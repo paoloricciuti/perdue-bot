@@ -16,7 +16,7 @@ const sendMessage = (message) => {
     return fetch(`${BASE_URL}/sendMessage?${params}`);
 }
 
-const checkAdmin=(update)=>{
+const checkAdmin=async (update)=>{
     const { message: { chat: { id: chatId }, from: { id: userId }}}=update
     if(chatId==userId){
         return true;
