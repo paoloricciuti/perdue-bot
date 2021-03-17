@@ -19,7 +19,7 @@ const exec=async (update, db)=>{
         utils.sendMessage(message);
         return;
     }
-    db.insert({
+    perdue.insert({
         start: currentTime,
         end: currentTime+(1000*60*60*12),
         perdue: []
