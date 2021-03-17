@@ -12,7 +12,6 @@ const getCommand = (update)=>{
 
 const sendMessage = (message) => {
     const params=new URLSearchParams(message);
-    console.log(`${BASE_URL}/sendMessage?${params}`);
     return fetch(`${BASE_URL}/sendMessage?${params}`);
 }
 
@@ -28,5 +27,6 @@ const checkAdmin=async (update)=>{
 
 module.exports={
     getCommand,
-    sendMessage
+    sendMessage,
+    checkAdmin
 }
