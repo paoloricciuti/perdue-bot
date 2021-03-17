@@ -2,8 +2,12 @@ const express = require('express');
 const http= require('http');
 const utils= require('./utils');
 require('dotenv').config()
-const db = require('monk')(process.env.MONGO_CONNECTION_STRING);
-
+let db;
+try{
+    db = require('monk')(process.env.MONGO_CONNECTION_STRING);
+}catch(e){
+    console.log(e);
+}
 const app=express();
 app.use(express.json());
 const server=http.createServer(app);
