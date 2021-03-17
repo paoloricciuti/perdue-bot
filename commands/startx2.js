@@ -6,9 +6,9 @@ const exec=async (update, db)=>{
         chat_id: update.message.chat.id,
         text: "È ora possibile inviare in privato su @PerDueBot il x2 della squadra."
     }
-    const perdue=db.get("perdue-table");
+    const perdue=await db.get("perdue-table");
     const currentTime=new Date().getTime();
-    const currentPerDue=perdue.findOne({
+    const currentPerDue=await perdue.findOne({
         end: {
             $gt: currentTime
         }
