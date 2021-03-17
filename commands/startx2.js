@@ -35,7 +35,7 @@ const exec = async (update, db) => {
     }
     for(let team of teams){
         notifyMessage.chat_id=team.id;
-        //utils.sendMessage(notifyMessage)
+        utils.sendMessage(notifyMessage)
     }
     setTimeout(()=>{
         const notifyMessage={
@@ -44,7 +44,7 @@ const exec = async (update, db) => {
         }
         for(let team of teams){
             notifyMessage.chat_id=team.id;
-            //utils.sendMessage(notifyMessage)
+            utils.sendMessage(notifyMessage)
         }
     }, end/2);
     //mando l'elenco dei x2 nella chat in cui è stato inviato il comando alla scadenza del x2
