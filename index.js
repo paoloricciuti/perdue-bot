@@ -1,5 +1,6 @@
 const express = require('express');
 const http= require('http');
+const utils= require('./utils');
 require('dotenv').config()
 const db = require('monk')(process.env.MONGO_CONNECTION_STRING);
 
@@ -14,8 +15,11 @@ app.get(`/${process.env.BOT_TOKEN}`, (req, res)=>{
 })
 
 app.post(`/${process.env.BOT_TOKEN}`, (req, res)=>{
-    console.log(req.body);
-    res.json(req.body);
+    const { body: update } = req;
+    const commandString=utils.getCommand(update);
+    const command=require(`./commands${commandString}`);
+    command.exec(update);
+    res.sendStatus(200);
 });
 
 server.listen(process.env.PORT || 3000, ()=>{
