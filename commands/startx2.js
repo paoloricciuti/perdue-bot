@@ -1,4 +1,5 @@
 const utils = require('../utils');
+require('dotenv').config()
 
 const exec = async (update, db) => {
     if (!(await utils.checkAdmin(update))) return;
@@ -18,8 +19,8 @@ const exec = async (update, db) => {
         utils.sendMessage(message);
         return;
     }
-    //const end=(1000*60*60*12);
-    const end = (1000 * 10);
+    const end= parseInt(process.env.TIME_LIMIT);
+    //const end = (1000 * 10);
     currentPerDue = await perdue.insert({
         start: currentTime,
         end: currentTime + end,
@@ -34,7 +35,7 @@ const exec = async (update, db) => {
     }
     for(let team of teams){
         notifyMessage.chat_id=team.id;
-        utils.sendMessage(notifyMessage)
+        //utils.sendMessage(notifyMessage)
     }
     setTimeout(()=>{
         const notifyMessage={
@@ -43,7 +44,7 @@ const exec = async (update, db) => {
         }
         for(let team of teams){
             notifyMessage.chat_id=team.id;
-            utils.sendMessage(notifyMessage)
+            //utils.sendMessage(notifyMessage)
         }
     }, end/2);
     //mando l'elenco dei x2 nella chat in cui è stato inviato il comando alla scadenza del x2
