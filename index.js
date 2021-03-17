@@ -4,6 +4,7 @@ require('dotenv').config()
 const db = require('monk')(process.env.MONGO_CONNECTION_STRING);
 
 const app=express();
+app.use(express.json());
 const server=http.createServer(app);
 
 app.get(`/${process.env.BOT_TOKEN}`, (req, res)=>{
