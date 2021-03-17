@@ -6,7 +6,6 @@ const exec=async (update, db)=>{
         chat_id: update.message.chat.id,
         text: "È ora possibile inviare in privato su @PerDueBot il x2 della squadra."
     }
-    utils.sendMessage(message)
     const perdue=db.get("perdue-table");
     const currentTime=new Date().getTime();
     const currentPerDue=perdue.findOne({
@@ -14,6 +13,7 @@ const exec=async (update, db)=>{
             $gt: currentTime
         }
     });
+    console.log(currentPerDue);
     if(currentPerDue!=null){
         message.text="Il x2 è già stato avviato!"
         utils.sendMessage(message);
