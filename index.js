@@ -18,7 +18,7 @@ app.post(`/${process.env.BOT_TOKEN}`, (req, res)=>{
     const { body: update } = req;
     const commandString=utils.getCommand(update);
     const command=require(`./commands${commandString}`);
-    command.exec(update);
+    command.exec(update, db);
     res.sendStatus(200);
 });
 
