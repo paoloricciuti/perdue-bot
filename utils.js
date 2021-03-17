@@ -16,6 +16,16 @@ const sendMessage = (message) => {
     return fetch(`${BASE_URL}/sendMessage?${params}`);
 }
 
+const checkAdmin=(update)=>{
+    const { message: { chat: { id: chatId }, from: { id: userId }}}=update
+    if(chatId==userId){
+        return true;
+    }
+    const response=await fetch(`${BASE_URL}/getChatMember?chat_id=${chatId}&user_id=${userId}`);
+    const result=await response.json();
+    return ["administrator", "creator"].includes(result.result.status);
+}
+
 module.exports={
     getCommand,
     sendMessage
