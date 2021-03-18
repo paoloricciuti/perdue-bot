@@ -18,6 +18,10 @@ app.get(`/${process.env.BOT_TOKEN}`, (req, res)=>{
     })
 })
 
+app.get("/keepalive", (req, res)=>{
+    res.sendStatus(200);
+})
+
 app.post(`/${process.env.BOT_TOKEN}`, (req, res)=>{
     const { body: update } = req;
     const commandString=utils.getCommand(update);
