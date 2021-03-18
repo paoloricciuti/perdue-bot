@@ -4,6 +4,7 @@ require('dotenv').config()
 const BASE_URL=`https://api.telegram.org/bot${process.env.BOT_TOKEN}`;
 
 const getCommand = (update)=>{
+    if(!update.message.entities) return "";
     const commandEntity=update.message.entities.find(entity => entity.type=="bot_command");
     if(commandEntity.offset===0){
         let command=update.message.text.substring(0, commandEntity.length);
