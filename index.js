@@ -25,8 +25,11 @@ app.get("/keepalive", (req, res)=>{
 app.post(`/${process.env.BOT_TOKEN}`, (req, res)=>{
     const { body: update } = req;
     const commandString=utils.getCommand(update);
-    const command=require(`./commands${commandString}`);
-    command.exec(update, db);
+    console.log(commandString)
+    try{
+        const command=require(`./commands${commandString}`);
+        command.exec(update, db);
+    }catch(e){}
     res.sendStatus(200);
 });
 

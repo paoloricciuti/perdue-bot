@@ -5,9 +5,12 @@ const BASE_URL=`https://api.telegram.org/bot${process.env.BOT_TOKEN}`;
 
 const getCommand = (update)=>{
     const commandEntity=update.message.entities.find(entity => entity.type=="bot_command");
-    let command=update.message.text.substring(commandEntity.offset, commandEntity.length);
-    command=command.replace("@PerDueBot", "");
-    return command;
+    if(commandEntity.offset===0){
+        let command=update.message.text.substring(0, commandEntity.length);
+        command=command.replace("@PerDueBot", "");
+        return command;
+    }
+    return "";
 }
 
 const sendMessage = (message) => {
