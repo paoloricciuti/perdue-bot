@@ -2,13 +2,15 @@ const utils = require('../utils');
 require('dotenv').config()
 
 const exec = async (update, db) => {
-    console.log("in")
     if (!(await utils.checkAdmin(update))) return;
-    console.log("in");
+    if(update.message.chat.id == update.message.from.id) return;
     const perdue = await db.get("perdue-table");
     const currentTime = new Date().getTime();
     let [latestPerDue] = await perdue.find({
         start: {
+            $lt: currentTime
+        },
+        end: {
             $lt: currentTime
         }
     },
