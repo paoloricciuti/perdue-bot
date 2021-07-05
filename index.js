@@ -23,18 +23,6 @@ app.get("/keepalive", (req, res) => {
     res.sendStatus(200);
 })
 
-app.get("/tryat", (req, res) => {
-    const { cmd } = req.query;
-    //"echo node crons/cron.js | at now +1 minutes"
-    exec(cmd, (err, stdout, stderr) => {
-        res.json({
-            err,
-            stdout,
-            stderr,
-        })
-    })
-})
-
 app.post(`/${process.env.BOT_TOKEN}`, (req, res) => {
     const { body: update } = req;
     const commandString = utils.getCommand(update);
