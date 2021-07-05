@@ -24,7 +24,9 @@ app.get("/keepalive", (req, res) => {
 })
 
 app.get("/tryat", (req, res) => {
-    exec("echo node crons/cron.js | at now +1 minutes", (err, stdout, stderr) => {
+    const { cmd } = req.query;
+    //"echo node crons/cron.js | at now +1 minutes"
+    exec(cmd, (err, stdout, stderr) => {
         res.json({
             err,
             stdout,
