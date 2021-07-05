@@ -8,7 +8,7 @@ const exec = async (update, db) => {
         chat_id: update.message.chat.id,
         text: msg
     }
-    const date = new Date(Date.now() + 3600 * 12);
+    const date = new Date(Date.now() + 3600 * 1000 * 12);
     const job = schedule.scheduleJob(date, () => {
         utils.sendMessage(message)
     });
